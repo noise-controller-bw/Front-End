@@ -25,3 +25,22 @@ nav .nav-links {
   text-decoration: none;
   margin-right: 1.0rem;
 }
+
+.controls {
+  margin-top: 2.5rem;
+}
+
+.bear {
+  position: absolute;
+  top: 23rem;
+  left: 1rem;
+  height: 15rem;
+  width: 15rem;
+}
+
+.forest {
+  margin-top: 1.5rem;
+  position: relative;
+  top: 0;
+  left: 0;
+}
