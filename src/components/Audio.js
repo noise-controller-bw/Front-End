@@ -3,6 +3,7 @@ import Button from "@material-ui/core/Button";
 
 import AudioAnalyser from "./AudioAnalyser";
 import Background from "./Background";
+import ScoreForm from "./ScoreForm";
 
 class Audio extends Component {
   constructor(props) {
@@ -50,6 +51,7 @@ class Audio extends Component {
           </div>
           {this.state.audio ? <AudioAnalyser audio={this.state.audio} /> : ""}
         </main>
+        <ScoreForm />
       </div>
     );
   }
