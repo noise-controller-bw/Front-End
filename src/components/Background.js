@@ -2,34 +2,41 @@ import React from "react";
 import forestImage from "../src/img/forest.jpg";
 import bear from "../src/img/bear.gif";
 
-import {Button} from "reactstrap";
+import Stopwatch from "./Stopwatch";
+
+import { Button, Container } from "reactstrap";
 
 class Background extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isQuiet: false
+      isQuiet: false,
+      time: 30000,
+      gameEnd: false
     };
   }
 
-  audioFilter(audioData) {
-    audioData.filter(lvl => lvl < 128);
-    console.log(audioData);
-  }
+  // audioFilter(audioData) {
+  //   audioData.filter(lvl => lvl < 128);
+  //   console.log(audioData);
+  // }
 
   startTimer() {
     setInterval(() => {
-      this.audioFilter();
-      if (this.audioFilter()) {
-        this.setState({ isQuiet: true });
-      }
-    }, 30000);
+      // this.audioFilter();
+      this.setState({ isQuiet: true });
+    }, this.state.time);
   }
 
   stopTimer() {
-    clearInterval(() => {
-      this.startTimer();
-    });
+    clearInterval(this.startTimer);
+    this.setState({ isQuiet: false });
+  }
+
+  gameOver() {
+    if(this.state.isQuiet === true) {
+      this.setState({gameEnd: true});
+    }
   }
 
   // StopTimerLowThres() {
@@ -100,20 +107,26 @@ class Background extends React.Component {
 
   render() {
     return (
-      <div>
-        <img
-          src={forestImage}
-          className="forest"
-          style={{ position: "relative" }}
-          alt="forest"
-        />
-        {this.state.isQuiet && <img src={bear} className="bear" alt="bear" />}
+      <Container>
         <div>
-          <Button onClick={() => this.startTimer}>Start Timer</Button>
-          {/* <Button onClick={() => this.startMed}>Start Med Level Timer</Button> */}
-          <Button onClick={() => this.stopTimer}>Stop</Button>
+          <img
+            src={forestImage}
+            className="forest"
+            style={{ position: "relative" }}
+            alt="forest"
+          />
+          {this.state.isQuiet && <img src={bear} className="bear" alt="bear" />}
+          {this.state.isQuiet && <h2>GAME OVER</h2>}
+          <div>
+            <Container className="btn-contain">
+              <Button onClick={() => this.startTimer()}>Start Timer</Button>
+              {/* <Button onClick={() => this.startMed}>Start Med Level Timer</Button> */}
+              <Button onClick={() => this.stopTimer()}>Stop</Button>
+              <Stopwatch />
+            </Container>
+          </div>
         </div>
-      </div>
+      </Container>
     );
   }
 }
