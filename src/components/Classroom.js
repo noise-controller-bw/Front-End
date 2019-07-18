@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
+import React from "react";
 
-class Classroom extends Component {
-    render() {
-        return (
-            <>
-            <p>This is the classroom Component. More to come...</p>
-            </>
-        )
-    }
+import Audio from "./Audio";
+
+class Classroom extends React.Component {
+  render() {
+    return (
+      <div>
+        <Audio />
+      </div>
+    );
+  }
 }
-
-
-
 
 export default Classroom;

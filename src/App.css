@@ -7,11 +7,11 @@ nav {
   justify-content: space-between;
   align-content: center;
   max-width: 100%;
-  margin-top: 1.0rem;
+  /* margin-top: 1.0rem; */
   padding-bottom: 1.5rem;
   border-bottom: 0.1rem solid #000;
 }
-
+/* 
 .logo {
   margin-left: 1rem;
 }
@@ -24,4 +24,27 @@ nav .nav-links {
  a {
   text-decoration: none;
   margin-right: 1.0rem;
+} */
+
+.controls {
+  margin-top: 2.5rem;
+}
+
+.bear {
+  position: absolute;
+  top: 23rem;
+  left: 1rem;
+  height: 15rem;
+  width: 15rem;
+}
+
+.forest {
+  margin-top: 1.5rem;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.hidden {
+  display: none;
 }
