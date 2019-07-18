@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
+import { Button, Container } from "reactstrap";
 
 import AudioAnalyser from "./AudioAnalyser";
-import Background from "./Background";
 import ScoreForm from "./ScoreForm";
+import Background from "./Background";
 
 class Audio extends Component {
   constructor(props) {
@@ -41,13 +41,15 @@ class Audio extends Component {
         <main>
           <div className="controls">
             <Background />
-            <Button
-              onClick={this.toggleMic}
-              color={this.state.audio ? "secondary" : "primary"}
-              variant="outlined"
-            >
-              {this.state.audio ? "Stop Mic" : "Start Mic"}
-            </Button>
+            <Container className="mic-btn">
+              <Button
+                onClick={this.toggleMic}
+                color={this.state.audio ? "secondary" : "primary"}
+                variant="outlined"
+              >
+                {this.state.audio ? "Stop Mic" : "Start Mic"}
+              </Button>
+            </Container>
           </div>
           {this.state.audio ? <AudioAnalyser audio={this.state.audio} /> : ""}
         </main>
