@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+
 import {
   Button,
   Form,
@@ -72,4 +74,8 @@ class SignUp extends React.Component {
     );
   }
 }
-export default SignUp;
+export default connect(
+  null,
+  {}
+)(SignUp);
+

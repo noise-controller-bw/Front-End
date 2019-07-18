@@ -1,4 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import { login } from "../actions/index";
+
 import { Button, Form, FormGroup, Label, Input, Container } from "reactstrap";
 
 class Login extends React.Component {
@@ -30,4 +34,7 @@ class Login extends React.Component {
     );
   }
 }
-export default Login;
+export default connect(
+  null,
+  { login }
+)(Login);

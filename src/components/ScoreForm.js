@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+
 import { Input, Button, Form, FormGroup, Container, Row } from "reactstrap";
 
 class ScoreForm extends React.Component {
@@ -29,4 +31,7 @@ class ScoreForm extends React.Component {
   }
 }
 
-export default ScoreForm;
+export default connect(
+  null,
+  {}
+)(ScoreForm);
