@@ -1,7 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { addTeacher } from "./actions";
+import { Route, Link } from "react-router-dom";
+import Login from "./Login";
+
+import { addTeacher } from "../actions";
 
 import {
   Button,
@@ -36,8 +39,8 @@ class SignUp extends React.Component {
 
   handleRegister = evt => {
     evt.preventDefault();
-    this.props.addTeacher(this.state.user);
-    // .then(() => this.props.history.push('/protected'));
+    this.props.addTeacher(this.state.user)
+    .then(() => this.props.history.push('/protected'));
   };
 
   render() {
@@ -105,6 +108,10 @@ class SignUp extends React.Component {
               />
             </FormGroup>
           </FormGroup>
+          <Row>
+            Have an account? <Link to="/">click here</Link>
+            <Route path="/login" component={Login} />
+          </Row>
           <Button color="primary" onClick={this.handleRegister}>
             Sign Up
           </Button>

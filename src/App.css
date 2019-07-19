@@ -65,3 +65,15 @@ nav .nav-links {
 .Stopwatch {
   margin-top: 1rem;
 }
+
+.link {
+  text-decoration: none;
+  color: #fff;
+  margin-right: 0.5rem;
+}
+
+.link:hover {
+  text-decoration: none;
+  color: #fff;
+  margin-right: 0.5rem;
+}

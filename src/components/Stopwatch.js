@@ -43,7 +43,7 @@ class Stopwatch extends Component {
         <div className="Stopwatch-display">
         <Jumbotron fluid>
         <Container fluid>
-          <h1 className="display-5">Stopwatch</h1>
+          <h1 className="display-5">Session Time</h1>
           <h3 >{minutes} : {seconds}</h3>
           {this.state.timerOn === false && this.state.timerTime === 0 && (
           <Button onClick={this.startTimer}>Start</Button>

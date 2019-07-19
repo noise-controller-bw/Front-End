@@ -1,9 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { login } from "./actions";
+import { login } from "../actions";
 
-import { Button, Form, FormGroup, Label, Input, Container } from "reactstrap";
+import { Route, Link } from "react-router-dom";
+
+import SignUp from "./SignUp";
+
+import { Button, Form, FormGroup, Label, Input, Container, Row } from "reactstrap";
 
 class Login extends React.Component {
   state = {
@@ -26,7 +30,7 @@ class Login extends React.Component {
     evt.preventDefault();
     this.props
       .login(this.state.credentials)
-      .then(() => this.props.history.push("/users/:id"));
+      .then(() => this.props.history.push("/protected"));
   };
 
   render() {
@@ -55,6 +59,10 @@ class Login extends React.Component {
               onChange={this.handleChange}
             />
           </FormGroup>
+          <Row>
+            No account? <Link to="/register">click here</Link>
+            <Route path="/register" component={SignUp} />
+          </Row>
           <Button color="primary" onClick={this.handleLogin}>
             Login
           </Button>
