@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { addSessionScore } from "./actions";
+import { addSessionScore } from "../actions";
 
 import { Input, Button, Form, FormGroup, Container, Row } from "reactstrap";
 

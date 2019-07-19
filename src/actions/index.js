@@ -10,9 +10,9 @@ export const ADD_TEACHER_START = "ADD_TEACHER_START";
 export const ADD_TEACHER_SUCCESS = "ADD_TEACHER_SUCCESS";
 export const ADD_TEACHER_FAIL = "ADD_TEACHER_FAIL";
 
-// export const SESSION_SCORE_START = "SESSION_SCORE_START";
-// export const SESSION_SCORE_SUCCESS = "SESSION_SCORE_SUCCESS";
-// export const SESSION_SCORE_FAIL = "SESSION_SCORE_FAIL";
+export const SESSION_SCORE_START = "SESSION_SCORE_START";
+export const SESSION_SCORE_SUCCESS = "SESSION_SCORE_SUCCESS";
+export const SESSION_SCORE_FAIL = "SESSION_SCORE_FAIL";
 
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
@@ -64,22 +64,22 @@ export const addTeacher = teacher => dispatch => {
     });
 };
 //addScoreData
-// export const addSessionScore = sessionScore => dispatch => {
-//   dispatch({ type: ADD_TEACHER_START });
-//   axios
-//     .post(
-//       `https://noise-controller-buildweek.herokuapp.com/users/${user.id}/sessions`,
-//       sessionScore,
-//       {
-//         headers: { Authorization: localStorage.getItem("token") }
-//       }
-//     )
-//     .then(res => {
-//       console.log(res);
-//       dispatch({ type: ADD_TEACHER_SUCCESS, payload: res.data });
-//     })
-//     .catch(err => {
-//       console.log(err.response);
-//       dispatch({ type: ADD_TEACHER_FAIL, payload: err.response });
-//     });
-//  }
+export const addSessionScore = sessionScore => dispatch => {
+  dispatch({ type: ADD_TEACHER_START });
+  axios
+    .post(
+      `https://noise-controller-buildweek.herokuapp.com/users/sessions`,
+      sessionScore,
+      {
+        headers: { Authorization: localStorage.getItem("token") }
+      }
+    )
+    .then(res => {
+      console.log(res);
+      dispatch({ type: ADD_TEACHER_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.log(err.response);
+      dispatch({ type: ADD_TEACHER_FAIL, payload: err.response });
+    });
+ }

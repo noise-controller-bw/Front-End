@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Route, NavLink } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -9,12 +9,12 @@ import {
   NavItem
 } from "reactstrap";
 
-import PrivateRoute from "./PrivateRoute";
+import PrivateRoute from "./components/PrivateRoute";
 
-import Login from "./Login";
-import SignUp from "./SignUp";
-import Teacher from "./Teacher";
-// import Classroom from "./Classroom";
+import Login from "./components/Login";
+import SignUp from "./components/SignUp";
+import Teacher from "./components/Teacher";
+import Classroom from "./components/Classroom";
 
 import './App.css';
 
@@ -35,33 +35,42 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router>
         <>
           <div>
             <Navbar color="dark" dark expand="md">
-              <NavbarBrand href="/">Noise Controller</NavbarBrand>
+              <NavbarBrand href="/">
+                {/* <NavLink to="/" className="link"> */}
+                    Noise Controller
+                {/* </NavLink> */}
+              </NavbarBrand>
               <NavbarToggler onClick={this.toggle} />
               <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav className="ml-auto" navbar>
                   <NavItem>
-                    <Link to="/Login">Login</Link>
+                    <NavLink className="link" to="/login">Login</NavLink>
                   </NavItem>
                   <NavItem>
-                    <Link to="/register">Sign Up</Link>
+                    <NavLink className="link" to="/register">Sign Up</NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink className="link" to="/protected">Teacher</NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink className="link" to="/protected/session">Classroom</NavLink>
                   </NavItem>
                 </Nav>
               </Collapse>
             </Navbar>
           </div>
           {/* <Login /> */}
-          <Route path="/login" component={Login} />
+          <Route exact path="/login" component={Login} />
 
           {/* <SignUp /> */}
           <Route path="/register" component={SignUp} />
 
-          <PrivateRoute exact path="/user/:id" component={Teacher} />
+          <PrivateRoute exact path="/protected" component={Teacher} />
+          <PrivateRoute exact path="/protected/session" component={Classroom} />
         </>
-      </Router>
     );
   }
 }

@@ -1,6 +1,6 @@
 import React from "react";
-import forestImage from "../src/img/forest.jpg";
-import bear from "../src/img/bear.gif";
+import forestImage from "../img/forest.jpg";
+import bear from "../img/bear.gif";
 
 import Stopwatch from "./Stopwatch";
 
