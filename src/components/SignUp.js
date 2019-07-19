@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import { addTeacher } from "../actions";
+
 import {
   Button,
   Form,
@@ -13,19 +15,46 @@ import {
 } from "reactstrap";
 
 class SignUp extends React.Component {
+  state = {
+    user: {
+      username: "",
+      password: "",
+      firstname: "",
+      lastname: "",
+      email: ""
+    }
+  };
+
+  handleChange = evt => {
+    this.setState({
+      user: {
+        ...this.state.user,
+        [evt.target.name]: evt.target.value
+      }
+    });
+  };
+
+  handleRegister = evt => {
+    evt.preventDefault();
+    this.props.addTeacher(this.state.user);
+    // .then(() => this.props.history.push('/protected'));
+  };
+
   render() {
     return (
       <Container>
-        <Form>
+        <Form onSubmit={this.handleRegister}>
           <Row>
             <Col>
               <FormGroup>
                 <Label for="fname">First Name</Label>
                 <Input
                   type="text"
-                  name="fname"
+                  name="firstname"
                   id="fname"
                   placeholder="First Name"
+                  value={this.state.user.firstname}
+                  onChange={this.handleChange}
                 />
               </FormGroup>
             </Col>
@@ -34,20 +63,24 @@ class SignUp extends React.Component {
                 <Label for="lname">Last Name</Label>
                 <Input
                   type="text"
-                  name="lname"
+                  name="lastname"
                   id="lname"
                   placeholder="Last Name"
+                  value={this.state.user.lastname}
+                  onChange={this.handleChange}
                 />
               </FormGroup>
             </Col>
           </Row>
           <FormGroup>
-            <Label for="username">Email</Label>
+            <Label for="username">Username</Label>
             <Input
               type="text"
               name="username"
               id="username"
               placeholder="Username"
+              value={this.state.user.username}
+              onChange={this.handleChange}
             />
           </FormGroup>
           <FormGroup>
@@ -57,18 +90,24 @@ class SignUp extends React.Component {
               name="password"
               id="password"
               placeholder="Password"
+              value={this.state.user.password}
+              onChange={this.handleChange}
             />
             <FormGroup>
-              <Label for="classname">Class Name</Label>
+              <Label for="email">Email</Label>
               <Input
                 type="text"
-                name="classname"
+                name="email"
                 id="classname"
-                placeholder="Class Name"
+                placeholder="Email"
+                value={this.state.user.email}
+                onChange={this.handleChange}
               />
             </FormGroup>
           </FormGroup>
-          <Button color="primary">Sign Up</Button>
+          <Button color="primary" onClick={this.handleRegister}>
+            Sign Up
+          </Button>
         </Form>
       </Container>
     );
@@ -76,6 +115,5 @@ class SignUp extends React.Component {
 }
 export default connect(
   null,
-  {}
+  { addTeacher }
 )(SignUp);
-

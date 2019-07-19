@@ -6,10 +6,34 @@ import { login } from "../actions/index";
 import { Button, Form, FormGroup, Label, Input, Container } from "reactstrap";
 
 class Login extends React.Component {
+
+  state = {
+    credentials: {
+      username: "",
+      password: ""
+    }
+  };
+
+  handleChange = evt => {
+    this.setState({
+      credentials: {
+        ...this.state.credentials,
+        [evt.target.name]: evt.target.value
+      }
+    });
+  };
+
+  handleLogin = evt => {
+    evt.preventDefault();
+    this.props.login(this.state.credentials);
+    // .then(() => this.props.history.push('/protected'));
+  };
+
+
   render() {
     return (
       <Container>
-        <Form>
+        <Form onSubmit={this.handleLogin}>
           <FormGroup>
             <Label for="username">Username</Label>
             <Input
@@ -17,6 +41,8 @@ class Login extends React.Component {
               name="username"
               id="username"
               placeholder="Username"
+              value={this.state.credentials.username}
+              onChange={this.handleChange}
             />
           </FormGroup>
           <FormGroup>
@@ -26,9 +52,11 @@ class Login extends React.Component {
               name="password"
               id="password"
               placeholder="password"
+              value={this.state.credentials.password}
+              onChange={this.handleChange}
             />
           </FormGroup>
-          <Button color="primary">Login</Button>
+          <Button color="primary" onClick={this.handleLogin}>Login</Button>
         </Form>
       </Container>
     );
