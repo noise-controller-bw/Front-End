@@ -1,6 +1,7 @@
 import React from "react";
 
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 import Chart from "./Chart";
 
@@ -30,7 +31,9 @@ class Teacher extends React.Component {
     );
   }
 }
-export default connect(
-  null,
-  {}
-)(Teacher);
+export default withRouter(
+  connect(
+    null,
+    {}
+  )(Teacher)
+);

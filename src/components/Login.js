@@ -1,12 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { login } from "../actions/index";
+import { login } from "./actions";
 
 import { Button, Form, FormGroup, Label, Input, Container } from "reactstrap";
 
 class Login extends React.Component {
-
   state = {
     credentials: {
       username: "",
@@ -25,10 +24,10 @@ class Login extends React.Component {
 
   handleLogin = evt => {
     evt.preventDefault();
-    this.props.login(this.state.credentials);
-    // .then(() => this.props.history.push('/protected'));
+    this.props
+      .login(this.state.credentials)
+      .then(() => this.props.history.push("/users/:id"));
   };
-
 
   render() {
     return (
@@ -56,7 +55,9 @@ class Login extends React.Component {
               onChange={this.handleChange}
             />
           </FormGroup>
-          <Button color="primary" onClick={this.handleLogin}>Login</Button>
+          <Button color="primary" onClick={this.handleLogin}>
+            Login
+          </Button>
         </Form>
       </Container>
     );
@@ -66,3 +67,4 @@ export default connect(
   null,
   { login }
 )(Login);
+
