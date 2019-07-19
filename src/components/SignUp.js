@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { addTeacher } from "../actions";
+import { addTeacher } from "./actions";
 
 import {
   Button,
@@ -47,11 +47,11 @@ class SignUp extends React.Component {
           <Row>
             <Col>
               <FormGroup>
-                <Label for="fname">First Name</Label>
+                <Label for="firstname">First Name</Label>
                 <Input
                   type="text"
                   name="firstname"
-                  id="fname"
+                  id="firstname"
                   placeholder="First Name"
                   value={this.state.user.firstname}
                   onChange={this.handleChange}
