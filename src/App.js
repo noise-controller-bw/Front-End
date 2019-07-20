@@ -1,76 +1,105 @@
-import React from "react";
+import React, { Component } from "react";
+import API from "./api";
+
 import { Route, NavLink } from "react-router-dom";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem
-} from "reactstrap";
 
-import PrivateRoute from "./components/PrivateRoute";
+// import PrivateRoute from "./components/PrivateRoute";
 
-import Login from "./components/Login";
-import SignUp from "./components/SignUp";
-import Teacher from "./components/Teacher";
-import Classroom from "./components/Classroom";
+import LoginForm from "./components/LoginForm";
+import RegisterForm from "./components/RegisterForm";
+import AppHome from "./components/AppHome";
+import UserDashboard from "./components/UserDashboard";
 
-import './App.css';
+import "./App.css";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
+class App extends Component {
+  state = {
+    users: []
+  };
 
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
+  componentDidMount() {
+    API.get("users")
+      .then(res =>
+        this.setState({
+          users: res.data
+        })
+      )
+      .catch(err => console.log(err));
   }
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-  }
+
+  addUser = user => {
+    API.post("register", user, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
+      .then(res => res.data)
+      .catch(err => console.log(err));
+  };
+
+  login = creds => {
+    API.post("login", creds)
+      .then(res => {
+        localStorage.setItem("token", res.data.token);
+      })
+      .catch(err => console.log(err));
+  };
+
+  getSessions = user => {
+    API.get(`users/${user.id}/sessions`, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => console.log(err));
+  };
 
   render() {
     return (
-        <>
-          <div>
-            <Navbar color="dark" dark expand="md">
-              <NavbarBrand href="/">
-                {/* <NavLink to="/" className="link"> */}
-                    Noise Controller
-                {/* </NavLink> */}
-              </NavbarBrand>
-              <NavbarToggler onClick={this.toggle} />
-              <Collapse isOpen={this.state.isOpen} navbar>
-                <Nav className="ml-auto" navbar>
-                  <NavItem>
-                    <NavLink className="link" to="/login">Login</NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink className="link" to="/register">Sign Up</NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink className="link" to="/protected">Teacher</NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink className="link" to="/protected/session">Classroom</NavLink>
-                  </NavItem>
-                </Nav>
-              </Collapse>
-            </Navbar>
+      <div>
+        <nav>
+          <h1>Noise Controller</h1>
+          <div className="links">
+            <NavLink exact to="/">
+              Home
+            </NavLink>
+            <NavLink to="/users/">User Dashboard</NavLink>
+            <NavLink to="/register">Register</NavLink>
+            <NavLink to="/login">Log in</NavLink>
           </div>
-          {/* <Login /> */}
-          <Route exact path="/login" component={Login} />
+        </nav>
 
-          {/* <SignUp /> */}
-          <Route path="/register" component={SignUp} />
+        <Route exact path="/" component={AppHome} />
+        <Route
+          path="/register"
+          render={props => <RegisterForm {...props} adduser={this.addUser} />}
+        />
+        <Route
+          path="/login"
+          render={props => <LoginForm {...props} login={this.login} />}
+        />
+        {/* 
+        <PrivateRoute
+          path="/users"
+          render={props => (
+            <UserDashboard
+              {...props}
+              getSessions={this.getSessions}
+              users={this.state.users}
+            />
+          )}
+        /> */}
 
-          <PrivateRoute exact path="/protected" component={Teacher} />
-          <PrivateRoute exact path="/protected/session" component={Classroom} />
-        </>
+        <Route
+          path="/users/"
+          render={props => (
+            <UserDashboard
+              {...props}
+              getSessions={this.getSessions}
+              users={this.state.users}
+            />
+          )}
+        />
+      </div>
     );
   }
 }

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Button, Container, Jumbotron } from 'reactstrap';
-
+// import { Button, Container, Jumbotron } from 'reactstrap';
 
 class Stopwatch extends Component {
   state = {
@@ -41,27 +40,27 @@ class Stopwatch extends Component {
     return (
       <div className="Stopwatch">
         <div className="Stopwatch-display">
-        <Jumbotron fluid>
-        <Container fluid>
+          {/* <Jumbotron fluid>
+        <Container fluid> */}
           <h1 className="display-5">Session Time</h1>
-          <h3 >{minutes} : {seconds}</h3>
+          <h3>
+            {minutes} : {seconds}
+          </h3>
           {this.state.timerOn === false && this.state.timerTime === 0 && (
-          <Button onClick={this.startTimer}>Start</Button>
-        )}
-        {this.state.timerOn === true && (
-          <Button onClick={this.stopTimer}>Stop</Button>
-        )}
-        {this.state.timerOn === false && this.state.timerTime > 0 && (
-          <Button onClick={this.startTimer}>Resume</Button>
-        )}
-        {this.state.timerOn === false && this.state.timerTime > 0 && (
-          <Button onClick={this.resetTimer}>Reset</Button>
-        )}
-        </Container>
-      </Jumbotron>
-          
+            <button onClick={this.startTimer}>Start</button>
+          )}
+          {this.state.timerOn === true && (
+            <button onClick={this.stopTimer}>Stop</button>
+          )}
+          {this.state.timerOn === false && this.state.timerTime > 0 && (
+            <button onClick={this.startTimer}>Resume</button>
+          )}
+          {this.state.timerOn === false && this.state.timerTime > 0 && (
+            <button onClick={this.resetTimer}>Reset</button>
+          )}
+          {/* //   </Container>
+      // </Jumbotron> */}
         </div>
-       
       </div>
     );
   }
