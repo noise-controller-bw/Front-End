@@ -1,41 +1,32 @@
-.App h1 {
-  text-align: center;
-}
-
 nav {
   display: flex;
   justify-content: space-between;
-  align-content: center;
-  max-width: 100%;
-  /* margin-top: 1.0rem; */
-  padding-bottom: 1.5rem;
-  border-bottom: 0.1rem solid #000;
-}
-/* 
-.logo {
-  margin-left: 1rem;
+  align-items: center;
+  padding: 0 15px;
 }
 
-nav .nav-links {
+.links {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
- a {
+.links a {
   text-decoration: none;
-  margin-right: 1.0rem;
-} */
+  color: #000;
+  font-weight: bold;
+  margin-right: 10px;
+}
 
-.controls {
-  margin-top: 2.5rem;
+.links a.active {
+  border-bottom: 1px solid #000;
 }
 
 .bear {
   position: absolute;
-  top: 23rem;
-  left: 1rem;
   height: 15rem;
   width: 15rem;
+  left: 1rem;
+  top: 28rem;
 }
 
 .forest {
@@ -45,35 +36,47 @@ nav .nav-links {
   left: 0;
 }
 
-.hidden {
-  display: none;
+.sessionInfo {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: space-around;
+  flex-wrap: wrap;
 }
 
-.btn-contain {
-  margin-top: 0.5rem;
+.login-form {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 20rem;
 }
 
-.btn-contain button {
-  margin-right: 0.5rem;
-}
-
-.mic-btn {
+.login-form input {
   margin-bottom: 1rem;
-  margin-top: 1rem;
 }
 
-.Stopwatch {
-  margin-top: 1rem;
+.register-form {
+  margin: 0 auto;
+  width: 20rem;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
 }
 
-.link {
-  text-decoration: none;
-  color: #fff;
-  margin-right: 0.5rem;
+.register-form input {
+  margin-bottom: 1rem;
 }
 
-.link:hover {
-  text-decoration: none;
-  color: #fff;
-  margin-right: 0.5rem;
+.session-form {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-content: baseline;
+}
+
+.session-form input {
+  margin-bottom: 1rem;
 }
